@@ -1,0 +1,43 @@
+abcdario = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+def cifrar_mensaje(clave,mensajel):
+    return traductor_mensaje(clave,mensajel,'1')
+
+def descifrar_mensaje(clave,mensajel):
+    return traductor_mensaje(clave,mensajel,'2')
+
+def traductor_mensaje(clave,mensajel,accion):
+    traducido=[]
+    indice_clave=0
+    clave=clave.upper()
+
+    for symbol in mensajel:
+        num = abcdario.find(symbol.upper())
+        if num!=-1:
+            if accion=='1':
+                num+=abcdario.find(clave[indice_clave])
+            elif accion=='2':
+                num-=abcdario.find(clave[indice_clave])
+            num%=len(abcdario)
+            if symbol.isupper():
+                traducido.append(abcdario[num])
+            elif symbol.islower():
+                traducido.append(abcdario[num].lower())
+            indice_clave+=1
+            if indice_clave==len(clave):
+                indice_clave=0
+
+        else:
+            traducido.append(symbol)
+    return ('').join(traducido)
+
+def main():
+    mensaje = input("Ingrese su mensaje a codificar: ")
+    clavecodi = input("Ingrese su clave para codificar: ")
+    accion = input("¿Que desea hacer?:\n 1) Encriptar\n 2) desencriptar\n Inserte su numero: ") 
+
+    if accion=='1':
+        traducido=cifrar_mensaje(clavecodi,mensaje)
+    elif accion=='2':
+        traducido=descifrar_mensaje(clavecodi,mensaje)
+    print(traducido)
+main()
