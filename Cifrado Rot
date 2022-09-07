@@ -1,0 +1,47 @@
+mensaje = input("Ingrese su mensaje a codificar: ")
+mensajel= list(mensaje)
+rot = int(input("Ingrese cuantas veces aplicara el rot: "))
+abcdario = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
+            'n','o','p','q','r','s','t','u','v','w','x','y','z']
+
+abcdario2 = ['z','y','x','w','v','u','t','s','r','q','p','o','n',
+            'm','l','k','j','i','h','g','f','e','d','c','b','a']
+
+mensajecifrado = []
+
+resto = 0
+i = 0
+c = len(mensajel)
+while i < c:
+    if rot > 0:
+        if mensajel[i] == " ":
+            mensajecifrado.append(" ")
+
+        else:   
+            posicion = abcdario.index(mensajel[i])
+            posicionr = posicion + rot
+            if posicionr > 25:
+                posicionr = posicionr % 25
+                menci = posicionr  
+            else:
+                menci = posicion + rot
+            mensajecifrado.append(abcdario[menci])
+
+    if rot < 0:
+        rot2 = rot * -1
+        if mensajel[i] == " ":
+            mensajecifrado.append(" ")
+        else:   
+            posicion = abcdario2.index(mensajel[i])
+            posicionr = posicion + rot2
+            if posicionr > 25:
+                posicionr = posicionr % 25
+                menci = posicionr
+            else:
+                menci = posicion + rot2
+            mensajecifrado.append(abcdario2[menci])
+    i+=1
+    posicionr = 0  
+    resto = 0
+    
+print(mensajecifrado)  
