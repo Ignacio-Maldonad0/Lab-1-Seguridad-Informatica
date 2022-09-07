@@ -43,5 +43,8 @@ while i < c:
     i+=1
     posicionr = 0  
     resto = 0
-    
-print(mensajecifrado)  
+
+mensajecifradof=''.join(mensajecifrado)
+print(mensajecifradof)
+
+
